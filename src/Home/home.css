@@ -1,0 +1,47 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#welcome {
+  font-weight: bolder;
+}
+
+/* 
+FORM */
+
+.pkc {
+  width: 900px;
+  height: 800px;
+  background-color: rgb(248, 246, 246);
+  border: 1px solid black;
+  border-radius: 20px;
+  box-shadow: 5px 5px rgb(194, 7, 7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pkcard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#special {
+  left: 50px;
+  position: absolute;
+  bottom: 12px;
+  color: rgb(255, 245, 245);
+  font-weight: bolder;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  position: relative;
+  bottom: 10px;
+  width: 100%;
+  justify-content: space-around;
+}

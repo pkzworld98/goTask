@@ -1,0 +1,28 @@
+.main-input > input {
+  width: 448px;
+  height: 50px;
+  border: none;
+  outline-width: 0;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-bottom: 0;
+}
+
+.form > button {
+  display: none;
+}
+
+form {
+  display: flex;
+  height: 100px;
+}
+.main-input {
+  background-color: white;
+  border: black 2px solid;
+  height: fit-content;
+  position: relative;
+  bottom: 25px;
+
+  border-radius: 8px;
+}

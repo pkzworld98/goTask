@@ -1,0 +1,9 @@
+.render {
+  display: flex;
+  align-items: center;
+  width: 470px;
+}
+
+.render > input {
+  flex: 1;
+}
