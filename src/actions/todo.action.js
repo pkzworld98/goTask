@@ -146,9 +146,27 @@ export const taskCompleted=(id,index,toogle)=>{
 
 //DELETE ALL COMPLETED TASK
 
-export const deletecompleted=()=>({
-  type:DELETE_COMPLETED_TASK,
-})
+
+
+export const deletecompleted=()=>{
+  return async (dispatch)=>{
+
+    await firebase.database().ref("/").get().then((snapshot)=>{
+      if(snapshot.exists()){
+        snapshot.forEach((e)=>{
+          if(e.val().completed===true){
+            dispatch(deleteTodo(e.val().id));
+          }
+        })
+      }
+    })
+
+
+    dispatch({
+ type:DELETE_COMPLETED_TASK,
+    })
+  }
+}
 
 
 
@@ -188,8 +206,7 @@ export const fetchfbdata=()=>{
         await   firebase.database().ref("/").get().then((snapshot) => {
   if (snapshot.exists()) {
 
-   var data=snapshot.val();
-   console.log(data);
+
   snapshot.forEach((e)=>{
     console.log(e.val());
     
