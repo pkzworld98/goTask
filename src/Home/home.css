@@ -18,6 +18,7 @@ FORM */
   border: 1px solid black;
   border-radius: 20px;
   box-shadow: 5px 5px rgb(194, 7, 7);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,12 +30,50 @@ FORM */
   flex-direction: column;
 }
 
-#special {
+.special {
   left: 50px;
+
   position: absolute;
   bottom: 12px;
+  cursor: pointer;
   color: rgb(255, 245, 245);
+  height: 130px;
+  width: 250px;
   font-weight: bolder;
+  clip-path: circle(21% at 0 100%);
+  background: rgb(231, 136, 130);
+  background: rgb(231, 136, 130);
+  background: rgb(231, 136, 130);
+  background: linear-gradient(
+    201deg,
+    rgba(216, 221, 222, 1) 45%,
+    rgba(74, 75, 75, 1) 90%,
+    rgba(0, 0, 0, 1) 94%
+  );
+
+  transition: all 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 1px 1px 1px 1px black; */
+}
+
+.special:hover {
+  left: 50px;
+  height: 130px;
+  /* background: #3b3b3b; */
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 1px;
+  align-items: center;
+  position: absolute;
+  background: linear-gradient(to right top, #a5a0a0, #3b3b3b);
+  padding: 10px 13px;
+
+  bottom: 12px;
+  clip-path: circle(141.4% at 0 100%);
+  border-radius: 10px;
 }
 
 .foot {

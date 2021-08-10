@@ -11,14 +11,16 @@ import Divider from '@material-ui/core/Divider';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import CommentIcon from '@material-ui/icons/Comment';
 import "./todoitem.css"
 import DoneOutlineOutlinedIcon from '@material-ui/icons/DoneOutlineOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import { red } from "@material-ui/core/colors";
 import lightGreen from '@material-ui/core/colors/lightGreen';
-  import { createTheme } from '@material-ui/core/styles';
+
   import Tooltip from '@material-ui/core/Tooltip';
+
+  import MuiAlert from '@material-ui/lab/Alert';
+
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 
@@ -26,23 +28,34 @@ import lightGreen from '@material-ui/core/colors/lightGreen';
 const TodoItem = ({ task }) => {
 
 const [checked, setChecked] = React.useState([0]);
-const data=useSelector(state=>state.todos.data);
-console.log(data)
+const data=useSelector(state=>state.todos.data);                 //FETCHING TASK FROM STORE
 
-const lightg=lightGreen[500];
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: lightGreen[500],
-    },
-    secondary: {
-      main: '#f44336',
-    },
-  },
-});
 
-///material ui
+
+
+
+  ///MATERIAL UI COMPONENTS
+ function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const [open, setOpen] = React.useState(false);
+
+ 
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
+
+///////////////////////////////////////// MATERIAL  UI CODE///////////////////////////////
+
   const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -58,7 +71,9 @@ const theme = createTheme({
 }));
 
  const classes = useStyles();
- console.log(checked);
+
+
+ /////////////////HANDLE CHECKBOX TOOGLE.//////////
 
  const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -70,13 +85,16 @@ const theme = createTheme({
     } else {
       newChecked.splice(currentIndex, 1);
     }
+    
 
     setChecked(newChecked);
     const index=data.findIndex(element=>element.id===value);
     console.log(data[index].completed);
   
-    dispatch(taskCompleted(index,data[index].completed));
+    dispatch(taskCompleted(value,index,data[index].completed));
   };
+
+
 
 
     const value=task.id;
@@ -85,12 +103,27 @@ const theme = createTheme({
 
 
 
+///handle delete icon
+
+    const deletehandle=()=>{
+     
+       dispatch(deleteTodo(task.id))
+        setOpen(true)
+
+    }
 
 
-//maiin
+
+//main
   const [isUpdate, setIsUpdate] = useState(false);
   const dispatch = useDispatch();
   const textRef = useRef(null);
+
+
+
+/// FUNCTION TO EDIT OR UPDATE TASK
+
+
   function editItemToState(e) {
     e.preventDefault();
     dispatch(updateTodo({ message: textRef.current.value, id: task.id }));
@@ -99,6 +132,8 @@ const theme = createTheme({
   }
 
 
+
+//EDIT BOX DISPLAY OR FORM
   const renderForm = () => {
     return (
       <form class="render" onSubmit={editItemToState}>
@@ -110,6 +145,12 @@ const theme = createTheme({
       </form>
     );
   };
+
+
+
+  // DISPLAY ITEM
+
+
   const renderItem = () => {
     return (
       <>
@@ -120,6 +161,7 @@ const theme = createTheme({
         <Tooltip title="Mark Completed">
      <Checkbox
                 edge="start"
+              
              
             
                 checked={checked.indexOf(value) !== -1}
@@ -131,10 +173,12 @@ const theme = createTheme({
       {!task.completed?<ListItemText id={labelId} style={{fontWeight:"bolder"}} primary={task.task}/>
       :<ListItemText id={labelId} style={{textDecoration:"line-through",color:"red",fontStyle:"oblique"}}primary={task.task}/>
       }
+
+       
       
       <ListItemSecondaryAction>
         <Tooltip title="Delete The Task">
-              <IconButton edge="end" aria-label="comments" color="secondary" onClick={() => dispatch(deleteTodo(task.id))}>
+              <IconButton edge="end" aria-label="comments" color="secondary" onClick={deletehandle}>
                 <CloseIcon/>
               </IconButton></Tooltip><Tooltip title="Edit The Task">
                <IconButton edge="end" aria-label="comments" className="ml-3" color="inherit" onClick={()=>setIsUpdate(true)}>
@@ -151,7 +195,7 @@ const theme = createTheme({
     </ListItem>
      <Divider variant="inset" component="li" />
   </List>
- 
+   
       </>
     );
   };
