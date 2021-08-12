@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const todos = (state = initialState, action) => {
-  console.log(action.index);
+ 
   switch (action.type) {
     case "ADD_TODO":
       return {
@@ -27,7 +27,13 @@ const todos = (state = initialState, action) => {
         ...state,
         showtoast:false
       }
+    case "SAVE_TODOS":
+      return{
+        ...state,
+        data:action.todos
 
+
+      }
 
     case "DELETE_TODO":
       return {

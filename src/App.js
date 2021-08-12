@@ -13,9 +13,9 @@ function App() {
 
 
   useEffect(()=>{
-    dispatch(fetchfbdata());
+    dispatch(fetchfbdata(dispatch));
   
-  })
+  },[])
 
   return (
     <div className="App">

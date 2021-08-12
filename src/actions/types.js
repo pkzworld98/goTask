@@ -7,3 +7,16 @@ export const SHOW_COMPLETED_TASK="SHOW_COMPLETED_TASK";
 export const SHOW_UNCOMPLETED_TASK="SHOW_UNCOMPLETED_TASK";
 export const SHOW_ALL="SHOW_ALL"
 export const STOP_SHOW_TOAST="STOP_SHOW_TOAST"
+export const FETCH_DATA="FETCH_DATA"
+export const ADD_TASK_TODO = "ADD_TASK_TODO";
+
+
+
+
+///SAGA
+export const ADD_TO_DO_SAGA="ADD_TO_DO_SAGA"
+export const SAVE_TODOS="SAVE_TODOS"
+export const DELETE_TO_DO_SAGA="DELETE_TO_DO_SAGA"
+export const UPDATE_TO_DO_SAGA="UPDATE_TO_DO_SAGA"
+
+//////

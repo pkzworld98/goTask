@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../actions";
+import { addTodo, addTodoSaga } from "../../actions";
 import cuid from "cuid";
 import MuiAlert from '@material-ui/lab/Alert';
 import "./Addtodo.css"
@@ -61,7 +61,7 @@ setOpen(true)
     e.preventDefault();
 
                       
-    dispatch(addTodo({ task: tasks, id: cuid(),completed:false},showToast));    
+    dispatch(addTodoSaga({ task: tasks, id: cuid(),completed:false},showToast));    
 
      //DISPATCHING ACTION TO ADD TASK
     e.target.userInput.value = "";

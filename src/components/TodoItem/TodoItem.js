@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, taskCompleted, updateTodo } from "../../actions";
+import { deleteTodo, deleteTodoSaga, taskCompleted, updateTodo, updateTodoSaga } from "../../actions";
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
@@ -107,7 +107,7 @@ const [open, setOpen] = React.useState(false);
 
     const deletehandle=()=>{
      
-       dispatch(deleteTodo(task.id))
+       dispatch(deleteTodoSaga(task.id))
         setOpen(true)
 
     }
@@ -126,7 +126,7 @@ const [open, setOpen] = React.useState(false);
 
   function editItemToState(e) {
     e.preventDefault();
-    dispatch(updateTodo({ message: textRef.current.value, id: task.id }));
+    dispatch(updateTodoSaga({ message: textRef.current.value, id: task.id }));
     setIsUpdate(false);
     textRef.current = null;
   }

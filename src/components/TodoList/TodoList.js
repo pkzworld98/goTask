@@ -17,7 +17,6 @@ const TodoList = () => {
 
 
 
-
   const taskItems = taskobj.map((task) => { 
     return <TodoItem task={task} key={task.id} />;                    //MAPPING AND CALLING TODOITEM COMPONENT WITH EACH TASK OBJECT
   });
